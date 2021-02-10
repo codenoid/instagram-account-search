@@ -2,7 +2,10 @@
 
 # IG Account Search
 
-This library intended for education purpose only
+Search instagram account, that's it, This libra ry intended for education purpose only
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/codenoid/instagram-account-search)](https://goreportcard.com/report/github.com/codenoid/instagram-account-search)
+[![CodeFactor](https://www.codefactor.io/repository/github/codenoid/instagram-account-search/badge/master)](https://www.codefactor.io/repository/github/codenoid/instagram-account-search/overview/master)
 
 ## as HTTP/API Server
 
