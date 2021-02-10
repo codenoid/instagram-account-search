@@ -1,10 +1,10 @@
 <img align="right" width="100" height="100" src="http://pn-marisa.go.id/tkn/uploads/2020/07/instagram-png-instagram-png-logo-1455.png">
 
-# as IG Account Search
+# IG Account Search
 
 This library intended for education purpose only
 
-## HTTP/API Server
+## as HTTP/API Server
 
 Hit this API to use
 
