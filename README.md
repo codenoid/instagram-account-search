@@ -1,6 +1,6 @@
 <img align="right" width="100" height="100" src="http://pn-marisa.go.id/tkn/uploads/2020/07/instagram-png-instagram-png-logo-1455.png">
 
-# IG Account Search
+# as IG Account Search
 
 This library intended for education purpose only
 
@@ -20,7 +20,7 @@ ig-account-search-server -bind :3000
 curl 'http://localhost:3000/search?q=lola%20zieta'
 ```
 
-## Library
+## as Library
 
 `igaccountsearch` package library
 
