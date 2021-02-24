@@ -3,9 +3,15 @@ package igaccountsearch
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"math/rand"
 	"net/url"
+	"os"
 	"strings"
+	"time"
+
+	"github.com/go-resty/resty/v2"
 )
 
 // UserSearch  ....
@@ -18,19 +24,23 @@ func UserSearch(query string) (IGSearchResult, error) {
 		return result, fmt.Errorf("need search query")
 	}
 	urlstr := fmt.Sprintf("https://www.instagram.com/web/search/topsearch/?context=user&query=%s", url.QueryEscape(query))
-	ua := "GoogleBot"
-	body, err := GetHTML(urlstr, ua)
 
+	// Create a Resty Client
+	client := resty.New()
+	client.SetProxy(getProxy())
+
+	resp, err := client.R().
+		Get(urlstr)
 	//log.Print(body)
 	if err != nil {
 		log.Print(err)
 		return result, err
 	}
 	//parse JSON
-	err = json.Unmarshal([]byte(body), &result)
+	err = json.Unmarshal(resp.Body(), &result)
 	if err != nil {
 		log.Print(err)
-		log.Print(body)
+		log.Print(string(resp.Body()))
 		return result, err
 	}
 	if result.Status != "ok" {
@@ -39,4 +49,14 @@ func UserSearch(query string) (IGSearchResult, error) {
 	}
 	return result, nil
 
+}
+
+func getProxy() string {
+	b, err := ioutil.ReadFile(os.Getenv("PROXY_FILE_PATH"))
+	if err != nil {
+		return ""
+	}
+	proxies := strings.Split(string(b), "\n")
+	rand.Seed(time.Now().Unix())
+	return proxies[rand.Intn(len(proxies))]
 }
